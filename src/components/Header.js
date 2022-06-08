@@ -1,4 +1,4 @@
-function Header() {
+const Header = () => {
     return (
         <header className="header">
         <a className="header__logo" alt="Логотип" href='#'/>
