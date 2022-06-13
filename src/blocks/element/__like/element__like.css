@@ -9,6 +9,7 @@
   border: none;
   background-color: transparent;
   padding: 0;
+  margin-right: 16px;
 }
 
 .element__like:hover {

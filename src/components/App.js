@@ -1,20 +1,53 @@
-//import logo from "../images/logo.png";
+import { useState } from "react";
 import "../App.css";
 import Header from "./Header";
 import Footer from "./Footer";
 import Main from "./Main";
 import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
+//import api from "../utils/Api";
 
 function App() {
-  
+  const [isEditAvatarPopupOpen, setOpenAvatar] = useState(false);
+  const [isEditProfilePoupOpen, setOpenProfile] = useState(false);
+  const [isAddPlacePopupOpen, setOpenPlace] = useState(false);
+  const [selectedCard, setBigPic] = useState(null);
+
+  function handleEditAvatarClick() {
+    setOpenAvatar(true);
+  }
+
+  function handleEditProfileClick() {
+    setOpenProfile(true);
+  }
+
+  function handleAddPlaceClick() {
+    setOpenPlace(true);
+  }
+
+  function handleCardClick(card) {
+    setBigPic(card);
+  }
+
+  function closeAllPopups() {
+    setOpenAvatar(false);
+    setOpenPlace(false);
+    setOpenProfile(false);
+    setBigPic(null);
+  }
+
   return (
     <div className="app">
       <div className="page__content">
         <>
           <Header />
 
-          <Main />
+          <Main
+            onEditAvatar={handleEditAvatarClick}
+            onEditProfile={handleEditProfileClick}
+            onAddPlace={handleAddPlaceClick}
+            onCardClick={handleCardClick}
+          />
 
           <Footer />
         </>
@@ -23,6 +56,8 @@ function App() {
           name="name"
           title="Редактировать профиль"
           buttonText="Сохранить"
+          isOpen={isEditProfilePoupOpen}
+          onClose={closeAllPopups}
         >
           <fieldset className="popup__input-container">
             <input
@@ -57,7 +92,13 @@ function App() {
           </fieldset>
         </PopupWithForm>
 
-        <PopupWithForm name="place" title="Новое место" buttonText="Сохранить">
+        <PopupWithForm
+          name="place"
+          title="Новое место"
+          buttonText="Сохранить"
+          isOpen={isAddPlacePopupOpen}
+          onClose={closeAllPopups}
+        >
           <fieldset className="popup__input-container">
             <input
               required
@@ -88,15 +129,22 @@ function App() {
           </fieldset>
         </PopupWithForm>
 
-        <ImagePopup />
+        <ImagePopup card={selectedCard} onClose={closeAllPopups}/>
 
-        <PopupWithForm name="delete" title="Вы уверены?" buttonText="Да" extraClass="popup__form_type_delete"/>
+        <PopupWithForm
+          name="delete"
+          title="Вы уверены?"
+          buttonText="Да"
+          extraClass="popup__form_type_delete"
+        />
 
         <PopupWithForm
           name="avatar"
           title="Обновить аватар"
           buttonText="Сохранить"
           extraClass="popup__form_type_avatar"
+          isOpen={isEditAvatarPopupOpen}
+          onClose={closeAllPopups}
         >
           <fieldset class="popup__input-container">
             <input
