@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "../index.css";
 import api from "../utils/Api";
 import Card from './Card';
@@ -70,7 +69,7 @@ const Main = (props) => {
         aria-label="Коллекция фото с подписями и кнопкой Лайк"
       >
         <ul className="elements__box">
-          {cards.map((card, id) => <Card card={card} onCardClick={props.onCardClick} key={id}/>
+          {cards.map((card, _id) => <Card card={card} onCardClick={props.onCardClick} key={card._id}/>
           )}
         </ul>
       </section>

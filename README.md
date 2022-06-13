@@ -1,3 +1,4 @@
+This project was bootstrapped with Create React App.
 
 Проект: Посты о путешествиях
 Этот проект предлагает пользователю ознакомиться с информацией о путешествиях, смотреть фото, добавлять новые фото или удалять их, а также ставить лайки.
@@ -15,4 +16,4 @@ Java Script.
 Увеличение карточек.
 React.
 
-*Ссылка на проект:*https://violettaflower123.github.io/mesto/
+*Ссылка на проект:*http://violettaflower123.github.io/mesto-react/

@@ -5,13 +5,13 @@ import Footer from "./Footer";
 import Main from "./Main";
 import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
-//import api from "../utils/Api";
+
 
 function App() {
   const [isEditAvatarPopupOpen, setOpenAvatar] = useState(false);
   const [isEditProfilePoupOpen, setOpenProfile] = useState(false);
   const [isAddPlacePopupOpen, setOpenPlace] = useState(false);
-  const [selectedCard, setBigPic] = useState(null);
+  const [selectedCard, setSelectedCard] = useState(null);
 
   function handleEditAvatarClick() {
     setOpenAvatar(true);
@@ -26,14 +26,14 @@ function App() {
   }
 
   function handleCardClick(card) {
-    setBigPic(card);
+    setSelectedCard(card);
   }
 
   function closeAllPopups() {
     setOpenAvatar(false);
     setOpenPlace(false);
     setOpenProfile(false);
-    setBigPic(null);
+    setSelectedCard(null);
   }
 
   return (
@@ -55,7 +55,6 @@ function App() {
         <PopupWithForm
           name="name"
           title="Редактировать профиль"
-          buttonText="Сохранить"
           isOpen={isEditProfilePoupOpen}
           onClose={closeAllPopups}
         >
@@ -95,7 +94,6 @@ function App() {
         <PopupWithForm
           name="place"
           title="Новое место"
-          buttonText="Сохранить"
           isOpen={isAddPlacePopupOpen}
           onClose={closeAllPopups}
         >
@@ -141,7 +139,6 @@ function App() {
         <PopupWithForm
           name="avatar"
           title="Обновить аватар"
-          buttonText="Сохранить"
           extraClass="popup__form_type_avatar"
           isOpen={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
