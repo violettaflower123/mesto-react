@@ -5,7 +5,7 @@ import React from "react";
 const EditAvatarPopup = (props) => {
 
   const [avatar, setAvatar] = useState('');
-  let textInput = useRef();
+  const textInput = useRef();
 
   function handleChangeAvatar () {
     setAvatar(textInput.current.value);

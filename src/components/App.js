@@ -112,7 +112,8 @@ function App() {
     api.toggleLike(card._id, isLiked).then((newCard) => {
         setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
       
-    });
+    })
+    .catch((err) => alert(err))
   } 
   
     //удаление карточки
@@ -123,7 +124,8 @@ function App() {
       // Отправляем запрос в API и получаем обновлённые данные карточки
       api.deleteCard(card._id).then(() => {
         setCards((state) => state.filter((c) => c._id === card._id ? '' : c));
-      });
+      })
+      .catch((err) => alert(err))
     } 
 
   return (

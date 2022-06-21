@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from "react";
 //import { CardsContext } from "../context/CardsContext";
 import { UserContext } from "../context/UserContext";
 import "../index.css";
-import api from "../utils/Api";
 import Card from "./Card";
 
 const Main = (props) => {
