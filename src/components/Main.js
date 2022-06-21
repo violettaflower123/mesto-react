@@ -1,36 +1,24 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+//import { CardsContext } from "../context/CardsContext";
+import { UserContext } from "../context/UserContext";
 import "../index.css";
 import api from "../utils/Api";
-import Card from './Card';
+import Card from "./Card";
 
 const Main = (props) => {
+  const profileContext = useContext(UserContext);
+
   /*
-  function handleCardClick(card) {
-    setBigPic(card);
-  }
+  function handleCardLike(card) {
+    // Снова проверяем, есть ли уже лайк на этой карточке
+    const isLiked = card.likes.some(i => i._id === profileContext._id);
+    
+    // Отправляем запрос в API и получаем обновлённые данные карточки
+    api.toggleLike(card._id, !isLiked).then((newCard) => {
+        setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+    });
+  } 
   */
-  const [userName, setUserName] = useState("");
-  const [userDescription, setUserDescribtion] = useState("");
-  const [userAvatar, setUserAvatar] = useState("");
-  const [cards, setCards] = useState([]);
-  const [id, setID] = useState('');
-
-
-  useEffect(() => {
-    Promise.all([
-      //в Promise.all передаем массив промисов которые нужно выполнить
-      api.getDataUser(),
-      api.getDataInitialCards(),
-    ])
-      .then(([profile, cards]) => {
-        setUserName(profile.name);
-        setUserDescribtion(profile.about);
-        setUserAvatar(profile.avatar);
-        setCards(cards);
-        setID(profile._id);
-      })
-      .catch((err) => alert(err));
-  }, []);
 
   return (
     <main className="content">
@@ -39,8 +27,7 @@ const Main = (props) => {
           <div className="profile__photo-overlay js-new-avatar-form">
             <img
               className="profile__photo"
-              style={{ backgroundImage: `url(${userAvatar})` }}
-              src={userAvatar}
+              src={profileContext.avatar}
               alt="Жак-Ив Кусто"
               onClick={props.onEditAvatar}
             />
@@ -49,13 +36,13 @@ const Main = (props) => {
 
           <div className="profile__text">
             <div className="profile__info">
-              <h1 className="profile__title">{userName}</h1>
+              <h1 className="profile__title">{profileContext.name}</h1>
               <button
                 className="profile__edit-button"
                 onClick={props.onEditProfile}
               ></button>
             </div>
-            <p className="profile__subtitle">{userDescription}</p>
+            <p className="profile__subtitle">{profileContext.about}</p>
           </div>
         </div>
         <button
@@ -69,8 +56,15 @@ const Main = (props) => {
         aria-label="Коллекция фото с подписями и кнопкой Лайк"
       >
         <ul className="elements__box">
-          {cards.map((card, _id) => <Card card={card} onCardClick={props.onCardClick} key={card._id}/>
-          )}
+          {props.cards.map((card, _id) => (
+            <Card
+              card={card}
+              onCardClick={props.onCardClick}
+              key={card._id}
+              onCardLike={props.onCardLike}
+              onCardDelete={props.onCardDelete}
+            />
+          ))}
         </ul>
       </section>
     </main>
