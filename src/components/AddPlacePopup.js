@@ -44,6 +44,7 @@ const AddPlacePopup = (props) => {
                 className="popup__input popup__item-place"
                 minLength="2"
                 onChange={handleAddPlaceName}
+                value={newCardName}
               />
               <span
                 className="popup__error popup__error_visible"
@@ -58,6 +59,7 @@ const AddPlacePopup = (props) => {
                 name="link"
                 className="popup__input popup__item-link"
                 onChange={handleAddPlaceLink}
+                value={newCardLink}
               />
               <span
                 className="popup__error popup__error_visible"

@@ -3,6 +3,8 @@ import { UserContext } from "../context/UserContext";
 //import api from "../utils/Api";
 
 const Card = ({ card, onCardClick, onCardLike, onCardDelete }) => {
+  
+  let count = card.likes.length;
   const currentUser = useContext(UserContext);
 
   // Определяем, являемся ли мы владельцем текущей карточки

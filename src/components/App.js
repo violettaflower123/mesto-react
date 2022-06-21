@@ -90,6 +90,7 @@ function App() {
       .finally(() => closeAllPopups());
   }
 
+  //добавление новой карточки
   function handleAddNewCard(data) {
     api
       .addCard(data)
@@ -97,7 +98,9 @@ function App() {
         setCards([newCard, ...cards]);
       })
       .catch((err) => alert(err))
-      .finally(() => closeAllPopups());
+      .finally(() => {
+        closeAllPopups()
+  });
   }
 
   //ставим лайки
@@ -108,6 +111,7 @@ function App() {
     // Отправляем запрос в API и получаем обновлённые данные карточки
     api.toggleLike(card._id, isLiked).then((newCard) => {
         setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+      
     });
   } 
   
@@ -117,15 +121,8 @@ function App() {
       const isOwn = card.owner._id === currentUser._id;
       
       // Отправляем запрос в API и получаем обновлённые данные карточки
-      api.deleteCard(card._id).then((newCard) => {
-        //console.log(data);
-          setCards((state) => state.filter((c) => c._id === card._id ? newCard : c));
-          //element.remove();
-          //element = null;
-          //card.remove();
-          //card = null;
-          //setCards([newCard, ...cards]);
-          console.log(newCard);
+      api.deleteCard(card._id).then(() => {
+        setCards((state) => state.filter((c) => c._id === card._id ? '' : c));
       });
     } 
 
