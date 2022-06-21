@@ -4,11 +4,16 @@ import React from "react";
 
 const EditAvatarPopup = (props) => {
 
-  const [avatar, setAvatar] = useState('');
+  //const [avatar, setAvatar] = useState('');
   const textInput = useRef();
 
+  function setValue(input) {
+    return input.current.value;
+  }
+
   function handleChangeAvatar () {
-    setAvatar(textInput.current.value);
+    //setAvatar(textInput.current.value);
+    setValue(textInput);
   }
 
 //что происходит при сабмите
