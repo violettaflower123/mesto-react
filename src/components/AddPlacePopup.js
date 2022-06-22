@@ -1,10 +1,16 @@
 import PopupWithForm from "./PopupWithForm";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const AddPlacePopup = (props) => {
-
     const [newCardLink, setNewCardLink] = useState('');
     const [newCardName, setNewCardName] = useState('');
+
+    useEffect(() => {
+      if(props.isOpen) {
+        setNewCardLink('');
+        setNewCardName('');
+      }
+    }, [props.isOpen]);
 
     function handleAddPlaceLink (evt) {
         setNewCardLink(evt.target.value);

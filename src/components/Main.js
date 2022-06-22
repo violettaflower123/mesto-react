@@ -7,18 +7,6 @@ import Card from "./Card";
 const Main = (props) => {
   const profileContext = useContext(UserContext);
 
-  /*
-  function handleCardLike(card) {
-    // Снова проверяем, есть ли уже лайк на этой карточке
-    const isLiked = card.likes.some(i => i._id === profileContext._id);
-    
-    // Отправляем запрос в API и получаем обновлённые данные карточки
-    api.toggleLike(card._id, !isLiked).then((newCard) => {
-        setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
-    });
-  } 
-  */
-
   return (
     <main className="content">
       <section className="profile">

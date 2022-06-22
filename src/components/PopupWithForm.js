@@ -1,6 +1,6 @@
-import EditProfilePopup from "./EditProfilePopup";
+const PopupWithForm = ({ name, extraClass, title, buttonText, children, isOpen, onClose, onSubmit }) => {
 
-const PopupWithForm = ({ name, extraClass, title, buttonText, children, isOpen, onClose, onSubmit}) => {
+
   return <section className={`popup popup_type_${name} ${isOpen && 'popup_opened'}`}>
       <form className={`popup__form ${extraClass}`} name={`form-${name}`} onSubmit={onSubmit} noValidate>
         <button

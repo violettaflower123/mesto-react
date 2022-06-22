@@ -1,5 +1,5 @@
 import PopupWithForm from "./PopupWithForm";
-import { useRef, useState } from "react";
+import { useRef, useEffect } from "react";
 import React from "react";
 
 const EditAvatarPopup = (props) => {
@@ -7,12 +7,23 @@ const EditAvatarPopup = (props) => {
   //const [avatar, setAvatar] = useState('');
   const textInput = useRef();
 
-  function setValue(input) {
-    return input.current.value;
+  function setValue() {
+    return textInput.current.value;
   }
 
+  function setDefaultValue() {
+    return textInput.current.value = '';
+  }
+  
+  //очищение инпута при открытии
+  useEffect(() => {
+    if(props.isOpen) {
+      setDefaultValue();
+    }
+  }, [props.isOpen]);
+
+  //изменить аватар
   function handleChangeAvatar () {
-    //setAvatar(textInput.current.value);
     setValue(textInput);
   }
 

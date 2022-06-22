@@ -74,9 +74,10 @@ function App() {
       .changeUser(data)
       .then((profile) => {
         setCurrentUser(profile);
+        closeAllPopups();
       })
       .catch((err) => alert(err))
-      .finally(() => closeAllPopups());
+      //.finally(() => closeAllPopups());
   }
 
   //обновление аватарки
@@ -85,9 +86,10 @@ function App() {
       .changeAvatar(data)
       .then((profile) => {
         setCurrentUser(profile);
+        closeAllPopups();
       })
       .catch((err) => alert(err))
-      .finally(() => closeAllPopups());
+      //.finally(() => closeAllPopups());
   }
 
   //добавление новой карточки
@@ -96,11 +98,10 @@ function App() {
       .addCard(data)
       .then((newCard) => {
         setCards([newCard, ...cards]);
+        closeAllPopups();
       })
       .catch((err) => alert(err))
-      .finally(() => {
-        closeAllPopups()
-  });
+      //.finally(() => {closeAllPopups()});
   }
 
   //ставим лайки
